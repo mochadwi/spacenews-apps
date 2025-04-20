@@ -1,0 +1,44 @@
+# Android Studio / IntelliJ IDEA
+.gradle/
+build/
+captures/
+.idea/
+*.iml
+.DS_Store
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Build outputs
+*/build/
+**/build/
+
+# Navigation safe args
+*/generated/
+
+# APKs
+*.apk
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+
+# Gradle cache
+.gradle
+
+# Log Files
+*.log
+
+# Crashlytics
+com_crashlytics/
+crashlytics-build.properties
+
+# External native builds
+.cxx/
