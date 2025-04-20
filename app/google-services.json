@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "637346008525",
+    "project_id": "spacenews-d3d24",
+    "storage_bucket": "spacenews-d3d24.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637346008525:android:23fd915a9b5712b9b04884",
+        "android_client_info": {
+          "package_name": "io.mochadwi.spacenews"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAZ-WRCqUbm2gr80b4P51dgtFooaC3duE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -11,19 +11,19 @@ moshi = "1.15.1"
 room = "2.6.1"
 datastore = "1.1.4"
 # Authentication
-auth0 = "2.11.1"
+auth0 = "2.11.0"
 # Background Tasks
 workmanager = "2.9.0"
 # Firebase
 fcm = "24.0.0"
 googleServices = "4.4.2"
 # Kotlin
-kotlin = "1.9.0"
-kotlinKsp = "1.9.0-1.0.13"
+kotlin = "1.9.10"
+kotlinKsp = "1.9.10-1.0.13"
 # AndroidX
-coreKtx = "1.15.0"
+coreKtx = "1.13.1"
 lifecycleRuntimeKtx = "2.8.7"
-activityCompose = "1.10.1"
+activityCompose = "1.9.3"
 composeBom = "2024.06.00" # Updated BOM version
 # Testing
 junit = "4.13.2"
@@ -90,4 +90,5 @@ dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hi
 kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "kotlinKsp" }
 # Google Services for Firebase
 google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 
