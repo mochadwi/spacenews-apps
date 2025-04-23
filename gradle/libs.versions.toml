@@ -11,7 +11,7 @@ moshi = "1.15.1"
 room = "2.6.1"
 datastore = "1.1.4"
 # Authentication
-auth0 = "2.11.0"
+auth0 = "3.5.0"
 # Background Tasks
 workmanager = "2.9.0"
 # Firebase
