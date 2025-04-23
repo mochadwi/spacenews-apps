@@ -12,7 +12,7 @@ data class Blog(
     val news_site: String? = null,
     val summary: String? = null,
     val published_at: String? = null,
-    val updatedAt: String? = null,
+    val updated_at: String? = null,
     val featured: Boolean? = null,
     val launches: List<Launch>? = emptyList(),
     val events: List<Event>? = emptyList()
