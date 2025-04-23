@@ -17,8 +17,8 @@ class AuthInterceptor @Inject constructor(
             return chain.proceed(originalRequest)
         }
 
-        val accessToken: String? = null
-        
+        val accessToken: String? = secureTokenStorage.getAccessToken()
+
         return if (accessToken != null) {
             val authenticatedRequest = originalRequest.newBuilder()
                 .header("Authorization", "Bearer $accessToken")
