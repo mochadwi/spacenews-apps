@@ -27,8 +27,8 @@ class Auth0Manager @Inject constructor(
             .withScope("openid profile email")
             .withAudience("https://api.spaceflightnewsapi.net/v4/")
             .start(context, object : Callback<Credentials, AuthenticationException> {
-                override fun onSuccess(credentials: Credentials) {
-                    callback(Result.success(credentials))
+                override fun onSuccess(result: Credentials) {
+                    callback(Result.success(result))
                 }
 
                 override fun onFailure(error: AuthenticationException) {
