@@ -25,6 +25,8 @@ coreKtx = "1.13.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
 composeBom = "2024.06.00" # Updated BOM version
+# Security
+securityCrypto = "1.1.0-alpha07"
 # Testing
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -35,6 +37,9 @@ espressoCore = "3.6.1"
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+
+# Security
+androidx-security-crypto = { group = "androidx.security", name = "security-crypto", version.ref = "securityCrypto" }
 
 # Networking
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }

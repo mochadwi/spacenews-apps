@@ -1,13 +1,12 @@
 package io.mochadwi.spacenews.data.remote.interceptor
 
-//import io.mochadwi.spacenews.data.auth.SecureTokenStorage
+import io.mochadwi.spacenews.data.auth.SecureTokenStorage
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
 
-// class AuthInterceptor @Inject constructor(
-class AuthInterceptor(
-    // private val secureTokenStorage: SecureTokenStorage
+class AuthInterceptor @Inject constructor(
+    private val secureTokenStorage: SecureTokenStorage
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {

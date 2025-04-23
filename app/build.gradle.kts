@@ -90,6 +90,7 @@ dependencies {
 
     // Authentication (Auth0)
     implementation(libs.auth0)
+    implementation(libs.androidx.security.crypto)
 
     // Background Tasks (WorkManager)
     implementation(libs.workmanager.ktx)
