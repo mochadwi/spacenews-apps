@@ -2,10 +2,6 @@ package io.mochadwi.spacenews.data.auth
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.security.keystore.KeyGenParameterSpec
-import android.security.keystore.KeyProperties
-import androidx.security.crypto.EncryptedSharedPreferences
-import androidx.security.crypto.MasterKey
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -14,26 +10,9 @@ import javax.inject.Singleton
 class SecureTokenStorage @Inject constructor(
     @ApplicationContext private val context: Context
 ) {
-    private val masterKey = MasterKey.Builder(context)
-        .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
-        .setKeyGenParameterSpec(
-            KeyGenParameterSpec.Builder(
-                MasterKey.DEFAULT_MASTER_KEY_ALIAS,
-                KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
-            )
-                .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-                .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-                .setKeySize(256)
-                .build()
-        )
-        .build()
-
-    private val sharedPreferences: SharedPreferences = EncryptedSharedPreferences.create(
-        context,
+    private val sharedPreferences: SharedPreferences = context.getSharedPreferences(
         "auth_prefs",
-        masterKey,
-        EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-        EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        Context.MODE_PRIVATE
     )
 
     companion object {
@@ -66,7 +45,8 @@ class SecureTokenStorage @Inject constructor(
 
     fun isTokenExpired(): Boolean {
         val expiry = sharedPreferences.getLong(KEY_TOKEN_EXPIRY, 0)
-        return System.currentTimeMillis() > expiry
+        // Check if expiry time is in the past
+        return expiry > 0 && System.currentTimeMillis() > expiry
     }
 
     fun clearTokens() {

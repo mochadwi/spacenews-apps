@@ -1,7 +1,6 @@
 package io.mochadwi.spacenews.data.auth
 
 import android.content.Context
-import androidx.security.crypto.EncryptedSharedPreferences
 import com.auth0.android.Auth0
 import com.auth0.android.authentication.AuthenticationException
 import com.auth0.android.callback.Callback
@@ -51,6 +50,8 @@ class Auth0Manager @Inject constructor(
             })
     }
 
+    // Remove redundant getAccessToken method
+    /*
     fun getAccessToken(): String? {
         val encryptedPrefs = EncryptedSharedPreferences.create(
             "auth_prefs",
@@ -61,4 +62,5 @@ class Auth0Manager @Inject constructor(
         )
         return encryptedPrefs.getString("access_token", null)
     }
+    */
 }
