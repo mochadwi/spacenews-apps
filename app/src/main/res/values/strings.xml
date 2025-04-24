@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Space News</string>
-    <string name="com_auth0_domain">your-auth0-domain.auth0.com</string>
-    <string name="com_auth0_client_id">your-auth0-client-id</string>
-    <string name="auth0_scheme">https</string>
+    <string name="com_auth0_domain">kopikoding.auth0.com</string>
+    <string name="com_auth0_client_id">vxMeEJrBLs3gu9J6nK15v1sQWCCPlqCq</string>
+    <string name="auth0_scheme">space</string>
     <string name="auth0_audience">https://api.spaceflightnewsapi.net/v4/</string>
 </resources>

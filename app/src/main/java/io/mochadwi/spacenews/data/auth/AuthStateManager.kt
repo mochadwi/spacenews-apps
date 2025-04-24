@@ -15,9 +15,18 @@ import javax.inject.Singleton
 @Singleton
 class AuthStateManager @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val auth0Manager: Auth0Manager,
     private val secureTokenStorage: SecureTokenStorage
 ) {
+    private var auth0Manager: Auth0Manager? = null
+
+    fun setAuth0Manager(manager: Auth0Manager) {
+        auth0Manager = manager
+    }
+
+    fun clearAuth0Manager() {
+        auth0Manager = null
+    }
+
     private val _isAuthenticated = MutableLiveData<Boolean>()
     val isAuthenticated: LiveData<Boolean> = _isAuthenticated
 
@@ -41,7 +50,7 @@ class AuthStateManager @Inject constructor(
     }
 
     fun login(callback: (Result<Unit>) -> Unit) {
-        auth0Manager.login { result ->
+        auth0Manager?.login { result ->
             result.onSuccess { credentials ->
                 secureTokenStorage.saveTokens(
                     accessToken = credentials.accessToken,
@@ -59,7 +68,7 @@ class AuthStateManager @Inject constructor(
     }
 
     fun logout() {
-        auth0Manager.logout()
+        auth0Manager?.logout()
         secureTokenStorage.clearTokens()
         _isAuthenticated.value = false
         cancelAutoLogout()

@@ -1,31 +1,34 @@
 package io.mochadwi.spacenews.data.auth
 
-import android.content.Context
+import android.app.Activity
+import android.content.Intent
 import com.auth0.android.Auth0
 import com.auth0.android.authentication.AuthenticationException
 import com.auth0.android.callback.Callback
 import com.auth0.android.provider.WebAuthProvider
 import com.auth0.android.result.Credentials
-import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
-import javax.inject.Singleton
 import io.mochadwi.spacenews.R
 
-@Singleton
-class Auth0Manager @Inject constructor(
-    @ApplicationContext private val context: Context
+// we need Activity for auth0 to be able to start
+// and manually provide this, if use @inject it'll be circular deps in AuthStateManager
+class Auth0Manager(
+    private val activity: Activity
 ) {
     private val auth0 = Auth0.getInstance(
-        context.getString(R.string.com_auth0_client_id),
-        context.getString(R.string.com_auth0_domain)
+        activity.getString(R.string.com_auth0_client_id),
+        activity.getString(R.string.com_auth0_domain)
     )
 
     fun login(callback: (Result<Credentials>) -> Unit) {
         WebAuthProvider.login(auth0)
-            .withScheme("https") // Replace with your app scheme
+            .withScheme("space")
             .withScope("openid profile email")
+            .withTrustedWebActivity()
             .withAudience("https://api.spaceflightnewsapi.net/v4/")
-            .start(context, object : Callback<Credentials, AuthenticationException> {
+            .withParameters(mapOf("flags" to Intent.FLAG_ACTIVITY_NEW_TASK))
+            .start(activity, object : Callback<Credentials, AuthenticationException> {
                 override fun onSuccess(result: Credentials) {
                     callback(Result.success(result))
                 }
@@ -39,7 +42,7 @@ class Auth0Manager @Inject constructor(
     fun logout() {
         WebAuthProvider.logout(auth0)
             .withScheme("demo") // Replace with your app scheme
-            .start(context, object : Callback<Void?, AuthenticationException> {
+            .start(activity, object : Callback<Void?, AuthenticationException> {
                 override fun onSuccess(result: Void?) {
                     // Handle successful logout
                 }
